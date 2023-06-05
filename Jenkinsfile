@@ -9,7 +9,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'maven:3.8.6-openjdk-11'
+                    image 'maven'
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }

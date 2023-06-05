@@ -6,12 +6,12 @@ pipeline {
     }
 
     stages {
-       agent {
-               docker {
-                   image 'maven:3.8.3-openjdk-11'
-                   args '-v /var/run/docker.sock:/var/run/docker.sock'
-               }
-           }
+        agent {
+            docker {
+                image 'maven:3.8.6-openjdk-11'
+                args '-v /var/run/docker.sock:/var/run/docker.sock'
+            }
+        }
 
         stage('Test') {
             steps {
@@ -41,14 +41,14 @@ pipeline {
                 sh "ssh -i ${SERVER_PRIVATE_KEY} ${SERVER_USERNAME}@${SERVER_HOST} 'your-deployment-command'"
             }
         }
+    }
 
-        post {
-            success {
-                echo "SUCCESS"
-            }
-            failure {
-                echo "FAILED"
-            }
+    post {
+        success {
+            echo "SUCCESS"
+        }
+        failure {
+            echo "FAILED"
         }
     }
 }

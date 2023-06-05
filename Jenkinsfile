@@ -1,5 +1,10 @@
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'maven:3.9.0-eclipse-temurin-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
     environment {
         DOCKER_IMAGE = "jenkins-docker"
@@ -7,12 +12,6 @@ pipeline {
 
     stages {
         stage('Test') {
-            agent {
-                docker {
-                    image 'maven'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                }
-            }
             steps {
 
                 // Run tests using Maven

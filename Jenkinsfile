@@ -1,4 +1,6 @@
 pipeline {
+    agent none
+
     environment {
         DOCKER_IMAGE = "jenkins-docker"
     }

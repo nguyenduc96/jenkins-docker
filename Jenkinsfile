@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy the application to your server or container using SSH
-                sh "ssh -i ${SERVER_PRIVATE_KEY} ${SERVER_USERNAME}@${SERVER_HOST} 'your-deployment-command'"
+                sh "ssh -i ${SERVER_PRIVATE_KEY} ${SERVER_USERNAME}@${SERVER_HOST} "
             }
         }
     }

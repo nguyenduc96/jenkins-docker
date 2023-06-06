@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('TEST') {
             agent {
-                docker {
+                label 'docker' {
                     image 'maven:3.8.6-openjdk-11'
                     args '-u 0:0 /tmp:/root/.cache'
                 }

@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'KeyServer', keyFileVariable: 'SERVER_PRIVATE_KEY', usernameVariable: 'SERVER_USERNAME')]) {
-                    sh "ssh -i $SERVER_PRIVATE_KEY $SERVER_USERNAME@${env.SERVER_HOST} 'cd /path/to/app && ./deploy.sh'"
+                    sh "ssh -i ${SERVER_PRIVATE_KEY} ${SERVER_USERNAME}@${env.SERVER_HOST} 'cd /path/to/app && ./deploy.sh'"
                 }
             }
         }

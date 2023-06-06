@@ -1,5 +1,10 @@
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'maven:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         DOCKER_IMAGE = "jenkins-docker"
@@ -7,12 +12,6 @@ pipeline {
 
     stages {
         stage('TEST') {
-            agent {
-                label 'docker' {
-                    image 'maven:3.8.6-openjdk-11'
-                    args '-u 0:0 /tmp:/root/.cache'
-                }
-            }
             steps {
                 // Run tests using Maven
                 sh 'mvn test'

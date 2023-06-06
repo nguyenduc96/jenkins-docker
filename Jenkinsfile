@@ -7,13 +7,13 @@ pipeline {
 
     stages {
         stage('TEST') {
-            steps {
-                agent {
-                    docker {
-                        image 'maven:3.8.6-openjdk-11'
-                        args '-v /var/run/docker.sock:/var/run/docker.sock'
-                    }
+            agent {
+                docker {
+                    image 'maven:3.8.6-openjdk-11'
+                    args '-u 0:0 /tmp:/root/.cache'
                 }
+            }
+            steps {
                 // Run tests using Maven
                 sh 'mvn test'
             }

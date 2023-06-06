@@ -10,7 +10,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:latest'
-                    args '/tmp:/root/.cache'
+                    args '-v $HOME/.m2:/root/.m2'
                 }
             }
             steps {

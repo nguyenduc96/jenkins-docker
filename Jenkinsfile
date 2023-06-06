@@ -22,7 +22,7 @@ pipeline {
 
         stage('BUILD') {
             environment {
-                TAG_IMAGE = "${GIT_COMMIT:0:7}"
+                TAG_IMAGE = "${GIT_COMMIT.substring(0,7)}"
             }
             steps {
                 // Build the project using Maven

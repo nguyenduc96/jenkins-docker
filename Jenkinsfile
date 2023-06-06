@@ -10,6 +10,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:latest'
+                    args '-u 0:0'
                 }
             }
             steps {
